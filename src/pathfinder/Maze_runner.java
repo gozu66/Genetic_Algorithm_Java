@@ -15,17 +15,20 @@ public class Maze_runner {
 	
 	public static void main (String[] args) throws Exception {
 		
-		Grid grid = new Grid("Datastore/csvGrid_in_01.csv");
-				
-		Logger.printGrid(grid, 10,10);
-		for(int i = 0; i < 5; i++) {
+//		Grid grid = new Grid("Datastore/csvGrid_in_01.csv");
+//				
+//		Logger.printGrid(grid, 50,50);
+//		for(int i = 0; i < 50; i++) {
+//		
+//			Bot bot = new Bot(50,50,grid, grid.tiles[1][1]);
+//			while(!bot.move());
+//			//bot.evaluate();			
+//		}
+//		
 		
-			Bot bot = new Bot(5,85,grid, grid.tiles[80][10]);
-			while(!bot.move());
-		}
 		
-		
-		/*Bot[] bots = new Bot[10];
+		/*
+		 * Bot[] bots = new Bot[10];
 		for(int index = 0; index < bots.length; index++) {
 			bots[index] = new Bot(75,75,grid, grid.tiles[25][50]);
 			bots[index].simulate();

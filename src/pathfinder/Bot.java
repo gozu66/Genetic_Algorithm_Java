@@ -8,7 +8,7 @@ public class Bot {
 	
 	Grid grid;
 	Tile goal;
-	int x, y;		
+	public int x, y;		
 	int neighborValue = -1;
 	
 	HashMap<Tile, Boolean> tilesVisited = new HashMap<Tile, Boolean>();
@@ -94,8 +94,14 @@ public class Bot {
 	}
 		
 	protected boolean move() {
+
 		
 		this.stepsTaken++;		
+		if(this.stepsTaken > 10000) {
+			Logger.println_Formatted("BOT DIED");
+			return true;
+		}
+			
 		
 		getNeighborValue();
 		int dir = dna.get(neighborValue);		
@@ -133,11 +139,25 @@ public class Bot {
 			
 			Logger.println_Formatted("HIT WALL AT     : Grid.Tiles[" + 
 						x + "][" + y + "]" + "\nBOT HAD TAKEN   : " + this.stepsTaken + " steps.");
-			Logger.printGrid(grid, x, y, this.tilesVisited);
+//			Logger.printGrid(grid, x, y, this.tilesVisited);
 			return true;
 		}
 		
 		this.tilesVisited.put(grid.tiles[x][y], grid.tiles[x][y].wall);
 		return false;
+	}
+
+	public void selfEvaluate() {
+		
+		if (this.goalReached) {
+			this.fintness = 1;
+		}
+		else {
+			int xDiff = this.goal.x - this.x;
+			int yDiff = this.goal.y - this.y;
+			
+			int diff = xDiff + yDiff;
+			Logger.println_Formatted("DIFF : " + diff);
+		}
 	}
 }
